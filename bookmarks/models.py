@@ -1,6 +1,7 @@
 from datetime import datetime
 import urlparse
 
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -49,6 +50,9 @@ class Bookmark(models.Model):
             favicon_url = urlparse.urljoin(base_url, 'favicon.ico')
             return favicon_url
         return None
+    
+    def get_absolute_url(self):
+        return reverse('show_bookmark', kwargs={'bookmark_id': self.id})
     
     def all_tags(self, min_count=False):
         return Tag.objects.usage_for_model(BookmarkInstance, counts=False, min_count=None, filters={'bookmark': self.id})

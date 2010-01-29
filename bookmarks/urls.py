@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     url(r'^your_bookmarks/$', 'bookmarks.views.your_bookmarks', name="your_bookmarks"),
     url(r'^add/$', 'bookmarks.views.add', name="add_bookmark"),
     url(r'^(\d+)/delete/$', 'bookmarks.views.delete', name="delete_bookmark_instance"),
+    url(r'^(?P<bookmark_id>\d+)/$', 'bookmarks.views.show', name="show_bookmark"),
     
     # for voting
     (r'^(?P<object_id>\d+)/(?P<direction>up|down|clear)vote/?$',

@@ -104,3 +104,10 @@ def delete(request, bookmark_instance_id):
     
     return HttpResponseRedirect(next)
     
+
+def show(request, bookmark_id):
+    bookmark = get_object_or_404(Bookmark, id=bookmark_id)
+    
+    return render_to_response("bookmarks/bookmark.html", {
+        "bookmark": bookmark,
+    }, context_instance=RequestContext(request))
